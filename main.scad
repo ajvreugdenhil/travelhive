@@ -6,19 +6,13 @@ tile_height = 4;
 /* [Hidden] */
 
 // Images
-image_bee = "images/base/bee.png";
-image_beetle = "images/base/beetle.png";
-image_spider = "images/base/spider.png";
-image_ant = "images/base/ant.png";
-image_grasshopper = "images/base/grasshopper.png";
+image_bee = "images/base/bee.svg";
+image_beetle = "images/base/beetle.svg";
+image_spider = "images/base/spider.svg";
+image_ant = "images/base/ant.svg";
+image_grasshopper = "images/base/grasshopper.svg";
 
-image_size = 512;
-
-image_magic_xy = 0.05;
-image_magic_z = 0.1;
-
-images_xy_factor = image_magic_xy * 512/image_size;
-images_z_factor = image_magic_z;
+image_magic_xy = 0.20;
 
 FN = 32;
 
@@ -33,7 +27,7 @@ make();
 // --- Modules ---
 
 module make() {
-    tile_bee();
+    tile_spider();
 }
 
 module tile(image)
@@ -49,9 +43,9 @@ module tile(image)
         cylinder(r=tile_radius, h=tile_height, $fn=6);
 
         // the image
-        translate([0,0,tile_height])
-        scale([images_xy_factor,images_xy_factor,images_z_factor])
-        surface(file = image, center=true, invert=true);
+        scale([image_magic_xy,image_magic_xy,1])
+        linear_extrude(height=tile_height)
+        import(image, center=true);
     }
 }
 
