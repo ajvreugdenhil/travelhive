@@ -3,7 +3,7 @@
 tile_radius = 21.16;
 tile_height = 4;
 
-rounding = 1;
+rounding = 2;
 
 /* [Hidden] */
 
@@ -45,9 +45,9 @@ module tile(image)
                 union()
                 {
                     translate([0,0,tile_height-rounding/2])
-                        #sphere(r=rounding/2);
+                        sphere(r=rounding/2);
                     translate([0,0,rounding/2])
-                        #sphere(r=rounding/2);
+                        sphere(r=rounding/2);
                 }
             }
         }
