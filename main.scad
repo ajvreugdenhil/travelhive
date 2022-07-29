@@ -3,6 +3,8 @@
 tile_radius = 21.16;
 tile_height = 4;
 
+rounding = 1;
+
 /* [Hidden] */
 
 // Images
@@ -27,22 +29,29 @@ make();
 // --- Modules ---
 
 module make() {
-    tile_spider();
+    tile_bee();
 }
 
 module tile(image)
 {
-    // move back up to 0 height
-    translate([0,0,tile_height])
-    // rotate the entire tile so there is no overhang with fuzzy images
-    rotate([0,180,0])
     difference()
     {
-        // abuse cylinder to make a hexagon
-        // the radius determines the points of the shape
-        cylinder(r=tile_radius, h=tile_height, $fn=6);
+        hull()
+        {
+            for (i = [0:(360/6):360])
+            {
+                rotate([0,0,i])
+                translate([tile_radius-rounding/2,0,0])
+                union()
+                {
+                    translate([0,0,tile_height-rounding/2])
+                        #sphere(r=rounding/2);
+                    translate([0,0,rounding/2])
+                        #sphere(r=rounding/2);
+                }
+            }
+        }
 
-        // the image
         scale([image_magic_xy,image_magic_xy,1])
         linear_extrude(height=tile_height)
         import(image, center=true);
