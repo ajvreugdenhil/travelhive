@@ -1,2 +1,6 @@
 
 *.png~
+
+*.deps
+*.stl
+*.generated.scad

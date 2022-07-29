@@ -1,7 +1,7 @@
 /* [Tile sizing] */
 
 tile_radius = 21.16;
-tile_height = 1;
+tile_height = 4;
 
 /* [Hidden] */
 
@@ -12,8 +12,13 @@ image_spider = "images/base/spider.png";
 image_ant = "images/base/ant.png";
 image_grasshopper = "images/base/grasshopper.png";
 
-images_xy_factor = 0.05;
-images_z_factor = 0.1;
+image_size = 512;
+
+image_magic_xy = 0.05;
+image_magic_z = 0.1;
+
+images_xy_factor = image_magic_xy * 512/image_size;
+images_z_factor = image_magic_z;
 
 FN = 32;
 
@@ -50,7 +55,27 @@ module tile(image)
     }
 }
 
-module tile_bee() // Make me
+module tile_bee() // make me
 {
     tile(image_bee);
+}
+
+module tile_beetle() // make me
+{
+    tile(image_beetle);
+}
+
+module tile_spider() // make me
+{
+    tile(image_spider);
+}
+
+module tile_ant() // make me
+{
+    tile(image_ant);
+}
+
+module tile_grasshopper() // make me
+{
+    tile(image_grasshopper);
 }
