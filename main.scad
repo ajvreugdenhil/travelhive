@@ -1,6 +1,11 @@
 /* [Tile sizing] */
 
-tile_radius = 21.16;
+// Official version is 12 mm thick, and 37 mm wide measured between parallel edges (twice the inradius)
+// https://boardgames.stackexchange.com/questions/8982/weight-and-dimensions-of-hive-game-pieces
+// To match official size in x and y, we use `r = cos(30)R` where R is the cirumradius and r is the inradius.
+// 37/2 / (sqrt(3)/2) comes out to be 21.36
+
+tile_circumradius = 21.3;
 tile_height = 4;
 
 rounding = 2;
@@ -41,7 +46,7 @@ module tile(image)
             for (i = [0:(360/6):360])
             {
                 rotate([0,0,i])
-                translate([tile_radius-rounding/2,0,0])
+                translate([tile_circumradius-rounding/2,0,0])
                 union()
                 {
                     translate([0,0,tile_height-rounding/2])
