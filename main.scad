@@ -1,5 +1,3 @@
-/* [Tile sizing] */
-
 // Official version is 12 mm thick, and 37 mm wide measured between parallel edges (twice the inradius)
 // https://boardgames.stackexchange.com/questions/8982/weight-and-dimensions-of-hive-game-pieces
 // To match official size in x and y, we use `r = cos(30)R` where R is the cirumradius and r is the inradius.
@@ -10,6 +8,8 @@ tile_height = 4;
 
 rounding = 2;
 
+show_tile = "all"; // [all, bee, ant, grasshopper, spider, beetle, mosquito, ladybug]
+
 /* [Hidden] */
 
 // Images
@@ -18,6 +18,9 @@ image_beetle = "images/base/beetle.svg";
 image_spider = "images/base/spider.svg";
 image_ant = "images/base/ant.svg";
 image_grasshopper = "images/base/grasshopper.svg";
+
+image_mosquito = "images/expansion/mosquito.svg";
+image_ladybug = "images/expansion/ladybug.svg";
 
 image_magic_xy = 0.20;
 
@@ -33,8 +36,44 @@ make();
 
 // --- Modules ---
 
-module make() {
-    tile_bee();
+module make() 
+{
+    if (show_tile == "all")
+    {
+        // TODO
+    }
+    else if (show_tile == "bee")
+    {
+        tile_bee();
+    }
+    else if (show_tile == "ant")
+    {
+        tile_ant();
+    }
+    else if (show_tile == "grasshopper")
+    {
+        tile_grasshopper();
+    }
+    else if (show_tile == "beetle")
+    {
+        tile_beetle();
+    }
+    else if (show_tile == "spider")
+    {
+        tile_spider();
+    }
+    else if (show_tile == "mosquito")
+    {
+        tile_mosquito();
+    }
+    else if (show_tile == "ladybug")
+    {
+        tile_ladybug();
+    }
+    else
+    {
+        echo("Error");
+    }
 }
 
 module tile(image)
@@ -86,4 +125,14 @@ module tile_ant() // make me
 module tile_grasshopper() // make me
 {
     tile(image_grasshopper);
+}
+
+module tile_mosquito() // make me
+{
+    tile(image_mosquito);
+}
+
+module tile_ladybug() // make me
+{
+    tile(image_ladybug);
 }
