@@ -1,9 +1,8 @@
-// Official version is 12 mm thick, and 37 mm wide measured between parallel edges (twice the inradius)
-// https://boardgames.stackexchange.com/questions/8982/weight-and-dimensions-of-hive-game-pieces
+// Official version is 12 mm thick, and 38 mm wide measured between parallel edges (twice the inradius)
 // To match official size in x and y, we use `r = cos(30)R` where R is the cirumradius and r is the inradius.
-// 37/2 / (sqrt(3)/2) comes out to be 21.36
+// 38/2 / (sqrt(3)/2) comes out to be 21.93
 
-tile_circumradius = 21.3;
+tile_circumradius = 21.9;
 tile_height = 4;
 
 rounding = 2;
