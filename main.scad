@@ -5,7 +5,7 @@
 tile_circumradius = 21.9;
 tile_height = 4;
 
-rounding = 3;
+rounding = 2;
 
 show_tile = "all"; // [all, bee, ant, grasshopper, spider, beetle, mosquito, ladybug]
 
