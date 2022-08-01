@@ -1,6 +1,7 @@
 
 *.png~
-
 *.deps
 *.stl
 *.generated.scad
+
+images/source/
