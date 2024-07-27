@@ -7,7 +7,7 @@ tile_height = 4;
 
 rounding = 2;
 
-show_tile = "all"; // [all, bee, ant, grasshopper, spider, beetle, mosquito, ladybug]
+show_tile = "all"; // [all, bee, ant, grasshopper, spider, beetle, mosquito, ladybug, pillbug, blank]
 
 /* [Hidden] */
 
@@ -20,6 +20,7 @@ image_grasshopper = "images/base/grasshopper.svg";
 
 image_mosquito = "images/expansion/mosquito.svg";
 image_ladybug = "images/expansion/ladybug.svg";
+image_pillbug = "images/expansion/pillbug.svg";
 
 image_magic_xy = 0.20;
 
@@ -69,9 +70,32 @@ module make()
     {
         tile_ladybug();
     }
+    else if (show_tile == "pillbug")
+    {
+        tile_pillbug();
+    }
     else
     {
-        echo("Error");
+        blank_tile();
+    }
+}
+
+module blank_tile()
+{
+    hull()
+    {
+        for (i = [0:(360/6):360])
+        {
+            rotate([0,0,i])
+            translate([tile_circumradius-rounding/2,0,0])
+            union()
+            {
+                translate([0,0,tile_height-rounding/2])
+                    sphere(r=rounding/2);
+                translate([0,0,rounding/2])
+                    sphere(r=rounding/2);
+            }
+        }
     }
 }
 
@@ -79,25 +103,10 @@ module tile(image)
 {
     difference()
     {
-        hull()
-        {
-            for (i = [0:(360/6):360])
-            {
-                rotate([0,0,i])
-                translate([tile_circumradius-rounding/2,0,0])
-                union()
-                {
-                    translate([0,0,tile_height-rounding/2])
-                        sphere(r=rounding/2);
-                    translate([0,0,rounding/2])
-                        sphere(r=rounding/2);
-                }
-            }
-        }
-
+        blank_tile();
         scale([image_magic_xy,image_magic_xy,1])
-        linear_extrude(height=tile_height)
-        import(image, center=true);
+            linear_extrude(height=tile_height)
+            import(image, center=true);
     }
 }
 
@@ -134,4 +143,9 @@ module tile_mosquito() // make me
 module tile_ladybug() // make me
 {
     tile(image_ladybug);
+}
+
+module tile_pillbug() // make me
+{
+    tile(image_pillbug);
 }
